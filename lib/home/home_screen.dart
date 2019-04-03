@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' show Constants, AppColors;
 
 class NavigationIconView {
   final String _title;
-  final Widget _icon;
-  final Widget _activeIcon;
+  final IconData _icon;
+  final IconData _activeIcon;
   final Color _color;
   final BottomNavigationBarItem item;
 
   NavigationIconView(
-      {Key key, String title, Widget icon, Widget activeIcon, Color color})
+      {Key key, String title, IconData icon, IconData activeIcon, Color color})
       : _title = title,
         _icon = icon,
         _activeIcon = activeIcon,
         _color = color,
         item = BottomNavigationBarItem(
-          icon: icon,
+          icon: Icon(icon),
           title: Text(title),
-          activeIcon: activeIcon,
+          activeIcon: Icon(activeIcon),
           backgroundColor: color,
         );
 }
@@ -37,27 +38,51 @@ class _HomeScreenState extends State<HomeScreen> {
     _navigationViews = <NavigationIconView>[
       NavigationIconView(
         title: '微信',
-        icon: Icon(Icons.ac_unit),
-        activeIcon: Icon(Icons.access_alarm),
-        color: Colors.deepPurple,
+        icon: IconData(
+          0xe608,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe603,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        color: AppColors.BackgroundColor,
       ),
       NavigationIconView(
         title: '通讯录',
-        icon: Icon(Icons.book),
-        activeIcon: Icon(Icons.bookmark),
-        color: Colors.deepOrange,
+        icon: IconData(
+          0xe601,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe656,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        color: AppColors.BackgroundColor,
       ),
       NavigationIconView(
         title: '发现',
-        icon: Icon(Icons.find_in_page),
-        activeIcon: Icon(Icons.access_alarm),
-        color: Colors.teal,
+        icon: IconData(
+          0xe600,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe671,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        color: AppColors.BackgroundColor,
       ),
       NavigationIconView(
         title: '我',
-        icon: Icon(Icons.person_outline),
-        activeIcon: Icon(Icons.person),
-        color: Colors.pink,
+        icon: IconData(
+          0xe6c0,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe626,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        color: AppColors.BackgroundColor,
       ),
     ];
   }
@@ -84,13 +109,25 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('微信'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(
+              IconData(
+                0xe65e,
+                fontFamily: Constants.IconFontFamily,
+              ),
+              size: 22.0,
+            ),
             onPressed: () {
               print('click');
             },
           ),
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(
+              IconData(
+                0xe658,
+                fontFamily: Constants.IconFontFamily,
+              ),
+              size: 22.0,
+            ),
             onPressed: () {
               print('click add');
             },
