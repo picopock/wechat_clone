@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' show Constants, AppColors;
 
+enum ActionItems {
+  GROUP_CHAT,
+  ADD_FRIEND,
+  QR_SCAN,
+  PAYMENT,
+  HELP,
+}
+
 class NavigationIconView {
-  final String _title;
-  final IconData _icon;
-  final IconData _activeIcon;
-  final Color _color;
   final BottomNavigationBarItem item;
 
   NavigationIconView(
       {Key key, String title, IconData icon, IconData activeIcon, Color color})
-      : _title = title,
-        _icon = icon,
-        _activeIcon = activeIcon,
-        _color = color,
-        item = BottomNavigationBarItem(
+      : item = BottomNavigationBarItem(
           icon: Icon(icon),
           title: Text(title),
           activeIcon: Icon(activeIcon),
@@ -27,8 +27,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  PageController _pageController;
   BottomNavigationBarType _type = BottomNavigationBarType.fixed;
   List<NavigationIconView> _navigationViews;
+  List<Widget> _pages;
   int _currentIndex = 0;
 
   @override
@@ -46,7 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
           0xe603,
           fontFamily: Constants.IconFontFamily,
         ),
-        color: AppColors.BackgroundColor,
       ),
       NavigationIconView(
         title: '通讯录',
@@ -58,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
           0xe656,
           fontFamily: Constants.IconFontFamily,
         ),
-        color: AppColors.BackgroundColor,
       ),
       NavigationIconView(
         title: '发现',
@@ -70,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
           0xe671,
           fontFamily: Constants.IconFontFamily,
         ),
-        color: AppColors.BackgroundColor,
       ),
       NavigationIconView(
         title: '我',
@@ -82,9 +81,49 @@ class _HomeScreenState extends State<HomeScreen> {
           0xe626,
           fontFamily: Constants.IconFontFamily,
         ),
-        color: AppColors.BackgroundColor,
       ),
     ];
+    _pageController = PageController(
+      initialPage: _currentIndex,
+    );
+    _pages = [
+      Container(
+        color: Colors.blue,
+      ),
+      Container(
+        color: Colors.grey,
+      ),
+      Container(
+        color: Colors.pink,
+      ),
+      Container(
+        color: Colors.white,
+      ),
+    ];
+  }
+
+  _buildPopupMenuItem(int iconName, String title) {
+    return Row(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(right: 12.0),
+          child: Icon(
+            IconData(
+              iconName,
+              fontFamily: Constants.IconFontFamily,
+            ),
+            size: 22.0,
+            color: const Color(AppColors.AppBarPopupMenuColor),
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            color: const Color(AppColors.AppBarPopupMenuColor),
+          ),
+        ),
+      ],
+    );
   }
 
   @override
@@ -95,11 +134,17 @@ class _HomeScreenState extends State<HomeScreen> {
               (NavigationIconView navigationIconView) =>
                   navigationIconView.item)
           .toList(),
+      fixedColor: const Color(AppColors.TabIconActive),
       currentIndex: _currentIndex,
       type: _type,
       onTap: (int index) {
         setState(() {
           _currentIndex = index;
+          _pageController.animateToPage(
+            _currentIndex,
+            duration: Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
+          );
         });
       },
     );
@@ -107,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('微信'),
+        elevation: 0.0, // 去掉阴影
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -120,22 +166,54 @@ class _HomeScreenState extends State<HomeScreen> {
               print('click');
             },
           ),
-          IconButton(
+          PopupMenuButton(
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuItem<ActionItems>>[
+                PopupMenuItem(
+                  child: _buildPopupMenuItem(0xe69e, '发起群聊'),
+                  value: ActionItems.GROUP_CHAT,
+                ),
+                PopupMenuItem(
+                  child: _buildPopupMenuItem(0xe638, '添加朋友'),
+                  value: ActionItems.ADD_FRIEND,
+                ),
+                PopupMenuItem(
+                  child: _buildPopupMenuItem(0xe61b, '扫一扫'),
+                  value: ActionItems.QR_SCAN,
+                ),
+                PopupMenuItem(
+                  child: _buildPopupMenuItem(0xe62a, '收付款'),
+                  value: ActionItems.PAYMENT,
+                ),
+                PopupMenuItem(
+                  child: _buildPopupMenuItem(0xe63b, '帮助与反馈'),
+                  value: ActionItems.HELP,
+                )
+              ];
+            },
             icon: Icon(
               IconData(
                 0xe658,
                 fontFamily: Constants.IconFontFamily,
               ),
-              size: 22.0,
             ),
-            onPressed: () {
-              print('click add');
+            onSelected: (ActionItems selected) {
+              print('点击的是 $selected');
             },
-          )
+          ),
         ],
       ),
-      body: Container(
-        color: Colors.blue,
+      body: PageView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return _pages[index];
+        },
+        controller: _pageController,
+        itemCount: _pages.length,
+        onPageChanged: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       bottomNavigationBar: _bottomNavigationBar,
     );
