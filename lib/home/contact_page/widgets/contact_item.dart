@@ -15,8 +15,21 @@ class ContactItem extends StatelessWidget {
   final String groupTitle;
   final VoidCallback onPressed;
 
+  static const double MARGIN_VERTICAL = 10.0;
+  static const double GROUP_TITLE_HEIGHT = 24.0;
+
   bool get isAvatarFromNet {
     return avatar.startsWith('http') || avatar.startsWith('https');
+  }
+
+  static double height(bool hasGroupTitle) {
+    double _buttonHeight = MARGIN_VERTICAL * 2 +
+        Constants.ContactAvatarSize +
+        Constants.DividerWidth;
+    if (hasGroupTitle) {
+      _buttonHeight += GROUP_TITLE_HEIGHT;
+    }
+    return _buttonHeight;
   }
 
   @override
@@ -35,7 +48,7 @@ class ContactItem extends StatelessWidget {
 
     Widget _button = Container(
       margin: EdgeInsets.symmetric(horizontal: 16.0),
-      padding: EdgeInsets.symmetric(vertical: 10.0),
+      padding: EdgeInsets.symmetric(vertical: MARGIN_VERTICAL),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -58,7 +71,8 @@ class ContactItem extends StatelessWidget {
         ? Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.fromLTRB(16.0, 5.0, 16.0, 5.0),
+                height: GROUP_TITLE_HEIGHT,
+                padding: EdgeInsets.only(left: 16.0, right: 16.0),
                 color: const Color(AppColors.ContactGroupTitleBg),
                 alignment: Alignment.centerLeft,
                 child:
