@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' show AppColors;
 
+enum Device { MAC, WIN }
+
 class Conversation {
   const Conversation({
     @required this.title,
@@ -23,6 +25,13 @@ class Conversation {
   final bool isMute;
   final int unReadMsgCount;
   final bool displayDot;
+
+  bool isAvatarFromNet() {
+    if (this.avatar.startsWith('http') || this.avatar.startsWith('https')) {
+      return true;
+    }
+    return false;
+  }
 }
 
 const List<Conversation> mockConversations = [
