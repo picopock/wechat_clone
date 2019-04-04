@@ -134,3 +134,8 @@ const List<Conversation> mockConversations = [
     unReadMsgCount: 0,
   ),
 ];
+
+const Map<String, List<Conversation>> mockConversationData = {
+  'deviceInfo': null,
+  'conversations': mockConversations,
+};

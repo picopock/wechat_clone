@@ -134,8 +134,12 @@ class _DeviceInfoItem extends StatelessWidget {
 
   final Device device;
 
-  int get IconName {
+  int get iconName {
     return device == Device.WIN ? 0xe75e : 0xe640;
+  }
+
+  String get deviceName {
+    return device == Device.WIN ? 'windows' : 'Mac';
   }
 
   @override
@@ -159,7 +163,7 @@ class _DeviceInfoItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 15.0, right: 25.0),
             child: Icon(
               IconData(
-                this.IconName,
+                iconName,
                 fontFamily: Constants.IconFontFamily,
               ),
               size: 24.0,
@@ -167,7 +171,7 @@ class _DeviceInfoItem extends StatelessWidget {
             ),
           ),
           Text(
-            '微信已登录，手机通知已关闭。',
+            '$deviceName 微信已登录，手机通知已关闭。',
             style: AppStyles.DeviceInfoItemTextStyle,
           )
         ],
@@ -186,7 +190,9 @@ class _ConversationPageState extends State<ConversationPage> {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         if (index == 0) {
-          return _DeviceInfoItem();
+          return _DeviceInfoItem(
+            device: Device.MAC,
+          );
         }
         return _ConversationItem(
           conversation: mockConversations[index],
