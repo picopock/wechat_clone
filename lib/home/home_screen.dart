@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' show Constants, AppColors;
-import './conversation_page.dart';
+import './conversation_page/index.dart';
 
 enum ActionItems {
   GROUP_CHAT,
