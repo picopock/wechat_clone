@@ -94,7 +94,7 @@ class _ContactsPageState extends State<ContactsPage> {
   }
 
   String getLetter(
-      BuildContext context, int tileHeight, Offset globalPosition) {
+      BuildContext context, double tileHeight, Offset globalPosition) {
     RenderBox _box = context.findRenderObject();
     var local = _box.globalToLocal(globalPosition);
     int index = (local.dy ~/ tileHeight)
@@ -121,8 +121,8 @@ class _ContactsPageState extends State<ContactsPage> {
         .map((String letter) => Expanded(child: Text(letter)))
         .toList();
 
-    final _totalHeight = constraints.biggest.height;
-    final _tileHeight = _totalHeight ~/ _letters.length; // 取整
+    final double _totalHeight = constraints.biggest.height;
+    final double _tileHeight = _totalHeight / _letters.length; // 取整
 
     return Container(
       color: widget._indexBarBg,
