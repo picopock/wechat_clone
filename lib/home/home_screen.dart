@@ -4,6 +4,7 @@ import '../constants.dart' show Constants, AppColors;
 
 import './conversation_page/index.dart';
 import './contact_page/index.dart';
+import './discover_page/index.dart';
 
 enum ActionItems {
   GROUP_CHAT,
@@ -43,47 +44,23 @@ class _HomeScreenState extends State<HomeScreen> {
     _navigationViews = <NavigationIconView>[
       NavigationIconView(
         title: '微信',
-        icon: IconData(
-          0xe608,
-          fontFamily: Constants.IconFontFamily,
-        ),
-        activeIcon: IconData(
-          0xe603,
-          fontFamily: Constants.IconFontFamily,
-        ),
+        icon: IconData(0xe608, fontFamily: Constants.IconFontFamily),
+        activeIcon: IconData(0xe603, fontFamily: Constants.IconFontFamily),
       ),
       NavigationIconView(
         title: '通讯录',
-        icon: IconData(
-          0xe601,
-          fontFamily: Constants.IconFontFamily,
-        ),
-        activeIcon: IconData(
-          0xe656,
-          fontFamily: Constants.IconFontFamily,
-        ),
+        icon: IconData(0xe601, fontFamily: Constants.IconFontFamily),
+        activeIcon: IconData(0xe656, fontFamily: Constants.IconFontFamily),
       ),
       NavigationIconView(
         title: '发现',
-        icon: IconData(
-          0xe600,
-          fontFamily: Constants.IconFontFamily,
-        ),
-        activeIcon: IconData(
-          0xe671,
-          fontFamily: Constants.IconFontFamily,
-        ),
+        icon: IconData(0xe600, fontFamily: Constants.IconFontFamily),
+        activeIcon: IconData(0xe671, fontFamily: Constants.IconFontFamily),
       ),
       NavigationIconView(
         title: '我',
-        icon: IconData(
-          0xe6c0,
-          fontFamily: Constants.IconFontFamily,
-        ),
-        activeIcon: IconData(
-          0xe626,
-          fontFamily: Constants.IconFontFamily,
-        ),
+        icon: IconData(0xe6c0, fontFamily: Constants.IconFontFamily),
+        activeIcon: IconData(0xe626, fontFamily: Constants.IconFontFamily),
       ),
     ];
     _pageController = PageController(
@@ -92,9 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _pages = [
       ConversationPage(),
       ContactsPage(),
-      Container(
-        color: Colors.pink,
-      ),
+      DiscoverPage(),
       Container(
         color: Colors.white,
       ),
