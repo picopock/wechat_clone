@@ -19,7 +19,6 @@ class _MinePageState extends State<MinePage> {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: SEPARATOR_SIZE),
             Header(),
             SizedBox(height: SEPARATOR_SIZE),
             DiscoverItem(

@@ -130,60 +130,71 @@ class _HomePageState extends State<HomePage> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('微信'),
-        elevation: 0.0, // 去掉阴影
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              IconData(
-                0xe65e,
-                fontFamily: Constants.IconFontFamily,
-              ),
-              size: 22.0,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, 'search');
-            },
-          ),
-          PopupMenuButton(
-            itemBuilder: (BuildContext context) {
-              return <PopupMenuItem<ActionItems>>[
-                PopupMenuItem(
-                  child: _buildPopupMenuItem('发起群聊', iconName: 0xe69e),
-                  value: ActionItems.GROUP_CHAT,
+      appBar: _currentIndex != 3
+          ? AppBar(
+              title: Text('微信'),
+              elevation: 0.0, // 去掉阴影
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    IconData(
+                      0xe65e,
+                      fontFamily: Constants.IconFontFamily,
+                    ),
+                    size: 22.0,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'search');
+                  },
                 ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem('添加朋友', iconName: 0xe638),
-                  value: ActionItems.ADD_FRIEND,
+                PopupMenuButton(
+                  itemBuilder: (BuildContext context) {
+                    return <PopupMenuItem<ActionItems>>[
+                      PopupMenuItem(
+                        child: _buildPopupMenuItem('发起群聊', iconName: 0xe69e),
+                        value: ActionItems.GROUP_CHAT,
+                      ),
+                      PopupMenuItem(
+                        child: _buildPopupMenuItem('添加朋友', iconName: 0xe638),
+                        value: ActionItems.ADD_FRIEND,
+                      ),
+                      PopupMenuItem(
+                        child: _buildPopupMenuItem('扫一扫', iconName: 0xe61b),
+                        value: ActionItems.QR_SCAN,
+                      ),
+                      PopupMenuItem(
+                        child: _buildPopupMenuItem('收付款', iconName: 0xe62a),
+                        value: ActionItems.PAYMENT,
+                      ),
+                      PopupMenuItem(
+                        child: _buildPopupMenuItem('帮助与反馈', iconName: 0xe63b),
+                        value: ActionItems.HELP,
+                      )
+                    ];
+                  },
+                  offset: Offset(0.0, 60.0),
+                  icon: Icon(
+                    IconData(
+                      0xe658,
+                      fontFamily: Constants.IconFontFamily,
+                    ),
+                  ),
+                  onSelected: (ActionItems selected) {
+                    print('点击的是 $selected');
+                  },
                 ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem('扫一扫', iconName: 0xe61b),
-                  value: ActionItems.QR_SCAN,
-                ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem('收付款', iconName: 0xe62a),
-                  value: ActionItems.PAYMENT,
-                ),
-                PopupMenuItem(
-                  child: _buildPopupMenuItem('帮助与反馈', iconName: 0xe63b),
-                  value: ActionItems.HELP,
+              ],
+            )
+          : AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0.0,
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.photo_camera),
+                  color: Colors.black,
                 )
-              ];
-            },
-            offset: Offset(0.0, 60.0),
-            icon: Icon(
-              IconData(
-                0xe658,
-                fontFamily: Constants.IconFontFamily,
-              ),
+              ],
             ),
-            onSelected: (ActionItems selected) {
-              print('点击的是 $selected');
-            },
-          ),
-        ],
-      ),
       body: PageView.builder(
         itemBuilder: (BuildContext context, int index) {
           return _pages[index];
