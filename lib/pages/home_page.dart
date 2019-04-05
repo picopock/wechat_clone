@@ -187,11 +187,15 @@ class _HomePageState extends State<HomePage> {
             )
           : AppBar(
               backgroundColor: Colors.white,
+              brightness: Brightness.light,
               elevation: 0.0,
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.photo_camera),
                   color: Colors.black,
+                  onPressed: () {
+                    print('camera pressed!');
+                  },
                 )
               ],
             ),
