@@ -38,11 +38,21 @@ class DiscoverItem extends StatelessWidget {
     );
 
     if (desc != null) {
-      noBorderButton.children.add(Text(
-        desc,
-        style: AppStyles.DescStyle,
-      ));
+      noBorderButton.children.add(
+        Padding(
+          padding: EdgeInsets.only(right: 10.0),
+          child: Text(
+            desc,
+            style: AppStyles.DescStyle,
+          ),
+        ),
+      );
     }
+
+    noBorderButton.children.add(Icon(
+      Icons.keyboard_arrow_right,
+      color: Colors.black38,
+    ));
 
     final Widget borderButton = Container(
       padding: EdgeInsets.only(bottom: VERTICAL_PADDING),
