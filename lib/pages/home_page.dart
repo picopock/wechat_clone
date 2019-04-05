@@ -171,6 +171,7 @@ class _HomePageState extends State<HomePage> {
                 )
               ];
             },
+            offset: Offset(0.0, 60.0),
             icon: Icon(
               IconData(
                 0xe658,
