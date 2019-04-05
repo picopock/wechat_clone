@@ -28,11 +28,11 @@ class NavigationIconView {
         );
 }
 
-class HomeScreen extends StatefulWidget {
-  _HomeScreenState createState() => _HomeScreenState();
+class HomePage extends StatefulWidget {
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends State<HomePage> {
   PageController _pageController;
   BottomNavigationBarType _type = BottomNavigationBarType.fixed;
   List<NavigationIconView> _navigationViews;
@@ -64,9 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
         activeIcon: IconData(0xe626, fontFamily: Constants.IconFontFamily),
       ),
     ];
-    _pageController = PageController(
-      initialPage: _currentIndex,
-    );
+    _pageController =
+        PageController(initialPage: _currentIndex, keepPage: true);
     _pages = [
       ConversationPage(),
       ContactsPage(),
@@ -75,19 +74,26 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
   }
 
-  _buildPopupMenuItem(int iconName, String title) {
+  _buildPopupMenuItem(String title, {int iconName, String iconPath}) {
     return Row(
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(right: 12.0),
-          child: Icon(
-            IconData(
-              iconName,
-              fontFamily: Constants.IconFontFamily,
-            ),
-            size: 22.0,
-            color: const Color(AppColors.AppBarPopupMenuColor),
-          ),
+          child: iconPath != null
+              ? Image.asset(
+                  iconPath,
+                  width: 22.0,
+                  height: 22.0,
+                  color: const Color(AppColors.AppBarPopupMenuColor),
+                )
+              : Icon(
+                  IconData(
+                    iconName,
+                    fontFamily: Constants.IconFontFamily,
+                  ),
+                  size: 22.0,
+                  color: const Color(AppColors.AppBarPopupMenuColor),
+                ),
         ),
         Text(
           title,
@@ -110,6 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
       fixedColor: const Color(AppColors.TabIconActive),
       currentIndex: _currentIndex,
       type: _type,
+      iconSize: 24.0,
       onTap: (int index) {
         setState(() {
           _currentIndex = index;
@@ -136,30 +143,30 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 22.0,
             ),
             onPressed: () {
-              print('click');
+              Navigator.pushNamed(context, 'search');
             },
           ),
           PopupMenuButton(
             itemBuilder: (BuildContext context) {
               return <PopupMenuItem<ActionItems>>[
                 PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe69e, '发起群聊'),
+                  child: _buildPopupMenuItem('发起群聊', iconName: 0xe69e),
                   value: ActionItems.GROUP_CHAT,
                 ),
                 PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe638, '添加朋友'),
+                  child: _buildPopupMenuItem('添加朋友', iconName: 0xe638),
                   value: ActionItems.ADD_FRIEND,
                 ),
                 PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe61b, '扫一扫'),
+                  child: _buildPopupMenuItem('扫一扫', iconName: 0xe61b),
                   value: ActionItems.QR_SCAN,
                 ),
                 PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe62a, '收付款'),
+                  child: _buildPopupMenuItem('收付款', iconName: 0xe62a),
                   value: ActionItems.PAYMENT,
                 ),
                 PopupMenuItem(
-                  child: _buildPopupMenuItem(0xe63b, '帮助与反馈'),
+                  child: _buildPopupMenuItem('帮助与反馈', iconName: 0xe63b),
                   value: ActionItems.HELP,
                 )
               ];

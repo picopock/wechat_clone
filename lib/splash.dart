@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class LoadingPage extends StatefulWidget {
-  _LoadingPageState createState() => _LoadingPageState();
+class SplashPage extends StatefulWidget {
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _LoadingPageState extends State<LoadingPage> {
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       print('3s 后跳转到首页');
-      Navigator.of(context).pushReplacementNamed('app');
+      Navigator.of(context).pushReplacementNamed('home');
     });
   }
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './loading.dart';
-import './home/home_screen.dart';
+import './splash.dart';
+import './pages/home_page.dart';
+import './pages/search/search.dart';
 
 import './constants.dart' show AppColors;
 
@@ -14,8 +15,9 @@ void main() => runApp(
           cardColor: Color(AppColors.AppBarColor),
         ),
         routes: <String, WidgetBuilder>{
-          'app': (BuildContext context) => HomeScreen(),
+          'home': (BuildContext context) => HomePage(),
+          'search': (BuildContext context) => Search(),
         },
-        home: LoadingPage(),
+        home: SplashPage(),
       ),
     );
