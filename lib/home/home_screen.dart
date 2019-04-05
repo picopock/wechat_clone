@@ -5,6 +5,7 @@ import '../constants.dart' show Constants, AppColors;
 import './conversation_page/index.dart';
 import './contact_page/index.dart';
 import './discover_page/index.dart';
+import './mine_page/index.dart';
 
 enum ActionItems {
   GROUP_CHAT,
@@ -70,9 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ConversationPage(),
       ContactsPage(),
       DiscoverPage(),
-      Container(
-        color: Colors.white,
-      ),
+      MinePage(),
     ];
   }
 

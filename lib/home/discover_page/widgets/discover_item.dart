@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart' show Constants, AppColors;
+import '../../../constants.dart' show Constants, AppColors, AppStyles;
 
 class DiscoverItem extends StatelessWidget {
   static const HORIZONTAL_PADDING = 20.0;
@@ -10,6 +10,7 @@ class DiscoverItem extends StatelessWidget {
     @required this.iconPath,
     @required this.title,
     this.showDivider: false,
+    this.desc,
     @required this.onPressed,
   })  : assert(iconPath != null),
         assert(title != null),
@@ -18,10 +19,11 @@ class DiscoverItem extends StatelessWidget {
   final String iconPath;
   final String title;
   final bool showDivider;
+  final String desc;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    final Widget noBorderButton = Row(
+    final noBorderButton = Row(
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(right: HORIZONTAL_PADDING),
@@ -31,9 +33,16 @@ class DiscoverItem extends StatelessWidget {
             height: Constants.FullWidthIconButtonIconSize,
           ),
         ),
-        Text(title),
+        Expanded(child: Text(title)),
       ],
     );
+
+    if (desc != null) {
+      noBorderButton.children.add(Text(
+        desc,
+        style: AppStyles.DescStyle,
+      ));
+    }
 
     final Widget borderButton = Container(
       padding: EdgeInsets.only(bottom: VERTICAL_PADDING),

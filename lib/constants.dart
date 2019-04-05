@@ -55,12 +55,13 @@ class AppStyles {
       TextStyle(fontSize: 64.0, color: Colors.white);
 
   static const HeaderCardTitleTextStyle = TextStyle(
-    fontSize: 14.0,
+    fontSize: 18.0,
+    fontWeight: FontWeight.w700,
     color: Color(AppColors.HeaderCardTitleText),
   );
 
   static const HeaderCardDescTextStyle = TextStyle(
-    fontSize: 12.0,
+    fontSize: 14.0,
     color: Color(AppColors.HeaderCardDescText),
   );
 
