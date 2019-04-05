@@ -51,11 +51,18 @@ class Header extends StatelessWidget {
               ],
             ),
           ),
-          Image.asset(
-            'assets/images/ic_qrcode_preview_tiny.png',
-            width: QR_CODE_PREV_SIZE,
-            height: QR_CODE_PREV_SIZE,
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Image.asset(
+              'assets/images/ic_qrcode_preview_tiny.png',
+              width: QR_CODE_PREV_SIZE,
+              height: QR_CODE_PREV_SIZE,
+            ),
           ),
+          Icon(
+            Icons.keyboard_arrow_right,
+            color: Colors.black38,
+          )
         ],
       ),
     );

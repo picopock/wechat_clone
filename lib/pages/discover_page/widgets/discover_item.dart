@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart' show Constants, AppColors, AppStyles;
 
 class DiscoverItem extends StatelessWidget {
-  static const HORIZONTAL_PADDING = 20.0;
+  static const PADDING_LEFT = 20.0;
+  static const PADDING_RIGHT = 10.0;
   static const VERTICAL_PADDING = 13.0;
 
   DiscoverItem({
@@ -26,7 +27,7 @@ class DiscoverItem extends StatelessWidget {
     final noBorderButton = Row(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: HORIZONTAL_PADDING),
+          padding: EdgeInsets.only(right: PADDING_LEFT),
           child: Image.asset(
             iconPath,
             width: Constants.FullWidthIconButtonIconSize,
@@ -71,8 +72,8 @@ class DiscoverItem extends StatelessWidget {
     return FlatButton(
       onPressed: onPressed,
       padding: EdgeInsets.only(
-          left: HORIZONTAL_PADDING,
-          right: HORIZONTAL_PADDING,
+          left: PADDING_LEFT,
+          right: PADDING_RIGHT,
           top: VERTICAL_PADDING,
           bottom: showDivider ? 0.0 : VERTICAL_PADDING),
       color: Colors.white,
