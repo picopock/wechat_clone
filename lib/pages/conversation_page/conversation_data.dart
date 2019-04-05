@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants.dart' show AppColors;
+import '../../constants.dart' show AppColors;
 
 enum Device { MAC, WIN }
 

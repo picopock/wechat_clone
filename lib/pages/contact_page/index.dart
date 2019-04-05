@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './widgets/contact_item.dart';
 
 import '../../constants.dart' show Constants, AppColors, AppStyles;
-import '../../modal/contact.dart' show Contact, ContactPageData;
+import './contact_data.dart' show Contact, ContactPageData;
 
 const INDEX_BAR_WORDS = [
   "↑",

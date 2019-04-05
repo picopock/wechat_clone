@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../modal/conversation.dart' show Device;
+import '../conversation_data.dart' show Device;
 import '../../../constants.dart' show Constants, AppColors, AppStyles;
 
 class DeviceInfoItem extends StatelessWidget {

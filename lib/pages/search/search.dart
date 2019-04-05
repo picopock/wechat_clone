@@ -5,16 +5,12 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  FocusNode focusNode = new FocusNode();
+  // FocusNode focusNode = new FocusNode();
 
-  FocusNode _requestFocus() {
-    FocusScope.of(context).requestFocus(focusNode);
-    return focusNode;
-  }
-
-  _getText(String text) {
-    return;
-  }
+  // FocusNode _requestFocus() {
+  //   FocusScope.of(context).requestFocus(focusNode);
+  //   return focusNode;
+  // }
 
   Widget _itemBuilder(String name, {bool border: true}) {
     const double itemWidth = 100.0;

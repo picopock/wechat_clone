@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../modal/conversation.dart' show Conversation;
+import '../conversation_data.dart' show Conversation;
 import '../../../constants.dart' show Constants, AppColors, AppStyles;
 
 class ConversationItem extends StatelessWidget {

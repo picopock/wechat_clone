@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './widgets/conversation_item.dart';
 import './widgets/device_info.dart';
 
-import '../../modal/conversation.dart' show ConversationPageData;
+import './conversation_data.dart' show ConversationPageData;
 
 class ConversationPage extends StatefulWidget {
   _ConversationPageState createState() => _ConversationPageState();

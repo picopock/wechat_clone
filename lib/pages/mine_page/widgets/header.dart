@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart' show AppColors, AppStyles;
-import '../../../modal/mine.dart' show me;
+import '../mine_data.dart' show me;
 
 class Header extends StatelessWidget {
   static const double AVATAR_SIZE = 72.0;
