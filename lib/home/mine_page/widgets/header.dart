@@ -21,13 +21,13 @@ class Header extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(right: VERTICAL_PADDING),
-            decoration: BoxDecoration(
+            child: new ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
-            ),
-            child: Image.network(
-              me.avatar,
-              width: AVATAR_SIZE,
-              height: AVATAR_SIZE,
+              child: Image.network(
+                me.avatar,
+                width: AVATAR_SIZE,
+                height: AVATAR_SIZE,
+              ),
             ),
           ),
           Expanded(
