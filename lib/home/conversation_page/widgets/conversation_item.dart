@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../modal/conversation.dart' show Conversation;
-import '../../../constants.dart';
+import '../../../constants.dart' show Constants, AppColors, AppStyles;
 
 class ConversationItem extends StatelessWidget {
   ConversationItem({Key key, this.conversation})
@@ -8,6 +9,40 @@ class ConversationItem extends StatelessWidget {
         super(key: key);
 
   final Conversation conversation;
+  var tapPos;
+
+  void _showMenu(BuildContext context, Offset tapPos) {
+    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
+    final RelativeRect position = RelativeRect.fromLTRB(
+      tapPos.dx,
+      tapPos.dy,
+      overlay.size.width - tapPos.dx,
+      overlay.size.height - tapPos.dy,
+    );
+
+    showMenu<String>(
+        context: context,
+        position: position,
+        items: <PopupMenuItem<String>>[
+          PopupMenuItem(
+            child: Text(Constants.MENU_MARK_AS_UNREAD_VALUE),
+            value: Constants.MENU_MARK_AS_UNREAD,
+          ),
+          PopupMenuItem(
+            child: Text(Constants.MENU_PIN_TO_TOP_VALUE),
+            value: Constants.MENU_PIN_TO_TOP,
+          ),
+          PopupMenuItem(
+            child: Text(Constants.MENU_DELETE_CONVERSATION_VALUE),
+            value: Constants.MENU_DELETE_CONVERSATION,
+          ),
+        ]).then<String>((String selected) {
+      switch (selected) {
+        default:
+          print(selected);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,58 +106,68 @@ class ConversationItem extends StatelessWidget {
       size: Constants.ConversationMuteIconSize,
     );
 
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        color: Color(AppColors.ConversationItemBg),
-        border: Border(
-          bottom: BorderSide(
-            color: const Color(AppColors.DividerColor),
-            width: Constants.DividerWidth,
-            style: BorderStyle.solid,
-          ),
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(right: 10.0),
-            child: _avatarContainer,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(
-                  conversation.title,
-                  style: AppStyles.TitleStyle,
-                ),
-                Text(
-                  conversation.desc,
-                  style: AppStyles.DescStyle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+    return Material(
+      color: Color(AppColors.ConversationItemBg),
+      child: InkWell(
+        onTapDown: (TapDownDetails details) {
+          tapPos = details.globalPosition;
+        },
+        onLongPress: () {
+          _showMenu(context, tapPos);
+        },
+        child: Container(
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: const Color(AppColors.DividerColor),
+                width: Constants.DividerWidth,
+                style: BorderStyle.solid,
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                conversation.updateAt,
-                style: AppStyles.DescStyle,
+              Container(
+                padding: EdgeInsets.only(right: 10.0),
+                child: _avatarContainer,
               ),
-              conversation.isMute ? _muteIcon : Container()
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      conversation.title,
+                      style: AppStyles.TitleStyle,
+                    ),
+                    Text(
+                      conversation.desc,
+                      style: AppStyles.DescStyle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    conversation.updateAt,
+                    style: AppStyles.DescStyle,
+                  ),
+                  conversation.isMute ? _muteIcon : Container()
+                ],
+              ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
