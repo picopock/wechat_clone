@@ -61,6 +61,11 @@ class ConversationItem extends StatelessWidget {
         height: Constants.ContactAvatarSize,
       );
     }
+    // 圆角矩形
+    _avatar = ClipRRect(
+      borderRadius: BorderRadius.circular(4.0),
+      child: _avatar,
+    );
 
     Widget _avatarContainer;
     if (conversation.unReadMsgCount > 0) {

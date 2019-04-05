@@ -164,12 +164,27 @@ class _ContactsPageState extends State<ContactsPage> {
   @override
   Widget build(BuildContext context) {
     int len = _functionButtons.length;
+    int totalCount = _contacts.length + len + 1;
     final List<Widget> _children = [
       ListView.builder(
         controller: _scrollController,
         itemBuilder: (BuildContext context, int index) {
           if (index < len) {
             return _functionButtons[index];
+          }
+
+          if (index == totalCount - 1) {
+            return SizedBox(
+              height: 48.0,
+              child: Container(
+                color: Color(AppColors.ContactGroupTitleBg),
+                alignment: Alignment.center,
+                child: Text(
+                  '$totalCount位联系人',
+                  style: AppStyles.GroupTitleItemTextStyle,
+                ),
+              ),
+            );
           }
 
           int _contactIndex = index - len;
@@ -187,7 +202,7 @@ class _ContactsPageState extends State<ContactsPage> {
             groupTitle: _hasGroupTitle ? _contact.nameIndex : null,
           );
         },
-        itemCount: _contacts.length + len,
+        itemCount: totalCount,
       ),
       Positioned(
         right: 0.0,

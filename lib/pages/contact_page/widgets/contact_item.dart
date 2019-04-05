@@ -34,17 +34,21 @@ class ContactItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _avatarIcon = isAvatarFromNet
-        ? Image.network(
-            avatar,
-            width: Constants.ContactAvatarSize,
-            height: Constants.ContactAvatarSize,
-          )
-        : Image.asset(
-            avatar,
-            width: Constants.ContactAvatarSize,
-            height: Constants.ContactAvatarSize,
-          );
+    Widget _avatarIcon = ClipRRect(
+      // 圆角矩形
+      borderRadius: BorderRadius.circular(4.0),
+      child: isAvatarFromNet
+          ? Image.network(
+              avatar,
+              width: Constants.ContactAvatarSize,
+              height: Constants.ContactAvatarSize,
+            )
+          : Image.asset(
+              avatar,
+              width: Constants.ContactAvatarSize,
+              height: Constants.ContactAvatarSize,
+            ),
+    );
 
     Widget _button = Container(
       margin: EdgeInsets.symmetric(horizontal: 16.0),
