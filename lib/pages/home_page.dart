@@ -17,9 +17,10 @@ enum ActionItems {
 
 class NavigationIconView {
   final BottomNavigationBarItem item;
+  final String title;
 
   NavigationIconView(
-      {Key key, String title, IconData icon, IconData activeIcon, Color color})
+      {Key key, this.title, IconData icon, IconData activeIcon, Color color})
       : item = BottomNavigationBarItem(
           icon: Icon(icon),
           title: Text(title),
@@ -72,6 +73,10 @@ class _HomePageState extends State<HomePage> {
       DiscoverPage(),
       MinePage(),
     ];
+  }
+
+  String get _getAppBarTitle {
+    return _navigationViews[_currentIndex].title;
   }
 
   _buildPopupMenuItem(String title, {int iconName, String iconPath}) {
@@ -132,7 +137,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: _currentIndex != 3
           ? AppBar(
-              title: Text('微信'),
+              title: Text(
+                _getAppBarTitle,
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal),
+              ),
               elevation: 0.0, // 去掉阴影
               actions: <Widget>[
                 IconButton(
@@ -141,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                       0xe65e,
                       fontFamily: Constants.IconFontFamily,
                     ),
-                    size: 22.0,
+                    size: 24.0,
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, 'search');
@@ -173,12 +181,7 @@ class _HomePageState extends State<HomePage> {
                     ];
                   },
                   offset: Offset(0.0, 60.0),
-                  icon: Icon(
-                    IconData(
-                      0xe658,
-                      fontFamily: Constants.IconFontFamily,
-                    ),
-                  ),
+                  icon: Icon(Icons.add_circle_outline, size: 30.0),
                   onSelected: (ActionItems selected) {
                     print('点击的是 $selected');
                   },
