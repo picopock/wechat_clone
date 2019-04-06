@@ -191,8 +191,8 @@ class _HomePageState extends State<HomePage> {
               ],
             )
           : AppBar(
-              backgroundColor: Colors.white,
               brightness: Brightness.light,
+              backgroundColor: Colors.white,
               elevation: 0.0,
               actions: <Widget>[
                 IconButton(

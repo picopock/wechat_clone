@@ -14,15 +14,15 @@ class Header extends StatelessWidget {
     return FlatButton(
       onPressed: () {},
       color: AppColors.HeaderCardBg,
-      padding: EdgeInsets.fromLTRB(HORIZONTAL_PADDING, VERTICAL_PADDING,
-          HORIZONTAL_PADDING, VERTICAL_PADDING),
+      padding: EdgeInsets.fromLTRB(
+          HORIZONTAL_PADDING, 0.0, HORIZONTAL_PADDING, VERTICAL_PADDING * 2),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(right: VERTICAL_PADDING),
             child: new ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderRadius: BorderRadius.circular(6.0),
               child: Image.network(
                 me.avatar,
                 width: AVATAR_SIZE,

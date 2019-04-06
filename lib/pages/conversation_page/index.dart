@@ -16,21 +16,24 @@ class _ConversationPageState extends State<ConversationPage> {
   Widget build(BuildContext context) {
     var mockConversations = data.conversations;
 
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        if (data.device != null && index == 0) {
-          return DeviceInfoItem(
-            device: data.device,
+    return Theme(
+      data: Theme.of(context).copyWith(cardColor: Colors.white), // 修改 卡片颜色
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          if (data.device != null && index == 0) {
+            return DeviceInfoItem(
+              device: data.device,
+            );
+          }
+          return ConversationItem(
+            conversation:
+                mockConversations[data.device == null ? index : index - 1],
           );
-        }
-        return ConversationItem(
-          conversation:
-              mockConversations[data.device == null ? index : index - 1],
-        );
-      },
-      itemCount: data.device == null
-          ? mockConversations.length
-          : mockConversations.length + 1,
+        },
+        itemCount: data.device == null
+            ? mockConversations.length
+            : mockConversations.length + 1,
+      ),
     );
   }
 }
