@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../conversation_data.dart' show Conversation;
 import '../../../constants.dart' show Constants, AppColors, AppStyles;
@@ -49,8 +50,8 @@ class ConversationItem extends StatelessWidget {
     // 头像
     Widget _avatar;
     if (conversation.isAvatarFromNet()) {
-      _avatar = Image.network(
-        conversation.avatar,
+      _avatar = CachedNetworkImage(
+        imageUrl: conversation.avatar,
         width: Constants.ContactAvatarSize,
         height: Constants.ContactAvatarSize,
       );

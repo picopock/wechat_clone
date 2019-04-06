@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../constants.dart' show Constants, AppColors, AppStyles;
 
@@ -38,8 +39,8 @@ class ContactItem extends StatelessWidget {
       // 圆角矩形
       borderRadius: BorderRadius.circular(4.0),
       child: isAvatarFromNet
-          ? Image.network(
-              avatar,
+          ? CachedNetworkImage(
+              imageUrl: avatar,
               width: Constants.ContactAvatarSize,
               height: Constants.ContactAvatarSize,
             )

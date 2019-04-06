@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../constants.dart' show AppColors, AppStyles;
 import '../mine_data.dart' show me;
@@ -23,8 +24,8 @@ class Header extends StatelessWidget {
             padding: EdgeInsets.only(right: VERTICAL_PADDING),
             child: new ClipRRect(
               borderRadius: BorderRadius.circular(6.0),
-              child: Image.network(
-                me.avatar,
+              child: CachedNetworkImage(
+                imageUrl: me.avatar,
                 width: AVATAR_SIZE,
                 height: AVATAR_SIZE,
               ),
