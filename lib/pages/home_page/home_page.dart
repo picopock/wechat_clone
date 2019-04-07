@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart' show Constants, AppColors;
 
+import './widgets/navigation_icon_view.dart';
 import '../conversation_page/index.dart';
 import '../contact_page/index.dart';
 import '../discover_page/index.dart';
@@ -13,20 +14,6 @@ enum ActionItems {
   QR_SCAN,
   PAYMENT,
   HELP,
-}
-
-class NavigationIconView {
-  final BottomNavigationBarItem item;
-  final String title;
-
-  NavigationIconView(
-      {Key key, this.title, IconData icon, IconData activeIcon, Color color})
-      : item = BottomNavigationBarItem(
-          icon: Icon(icon),
-          title: Text(title),
-          activeIcon: Icon(activeIcon),
-          backgroundColor: color,
-        );
 }
 
 class HomePage extends StatefulWidget {
@@ -46,23 +33,23 @@ class _HomePageState extends State<HomePage> {
     _navigationViews = <NavigationIconView>[
       NavigationIconView(
         title: '微信',
-        icon: IconData(0xe608, fontFamily: Constants.IconFontFamily),
-        activeIcon: IconData(0xe603, fontFamily: Constants.IconFontFamily),
+        iconCode: 0xe608,
+        activeIconCode: 0xe603,
       ),
       NavigationIconView(
         title: '通讯录',
-        icon: IconData(0xe601, fontFamily: Constants.IconFontFamily),
-        activeIcon: IconData(0xe656, fontFamily: Constants.IconFontFamily),
+        iconCode: 0xe601,
+        activeIconCode: 0xe656,
       ),
       NavigationIconView(
         title: '发现',
-        icon: IconData(0xe600, fontFamily: Constants.IconFontFamily),
-        activeIcon: IconData(0xe671, fontFamily: Constants.IconFontFamily),
+        iconCode: 0xe600,
+        activeIconCode: 0xe671,
       ),
       NavigationIconView(
         title: '我',
-        icon: IconData(0xe6c0, fontFamily: Constants.IconFontFamily),
-        activeIcon: IconData(0xe626, fontFamily: Constants.IconFontFamily),
+        iconCode: 0xe6c0,
+        activeIconCode: 0xe626,
       ),
     ];
     _pageController =
