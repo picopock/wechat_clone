@@ -9,8 +9,12 @@ class MinePage extends StatefulWidget {
   _MinePageState createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> {
+class _MinePageState extends State<MinePage>
+    with AutomaticKeepAliveClientMixin {
   static const double SEPARATOR_SIZE = 20.0;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {

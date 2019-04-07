@@ -43,7 +43,8 @@ class ContactsPage extends StatefulWidget {
   _ContactsPageState createState() => _ContactsPageState();
 }
 
-class _ContactsPageState extends State<ContactsPage> {
+class _ContactsPageState extends State<ContactsPage>
+    with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController;
   final ContactPageData _data = ContactPageData.mock();
   final List<Contact> _contacts = [];
@@ -57,6 +58,9 @@ class _ContactsPageState extends State<ContactsPage> {
     ContactItem(avatar: 'assets/images/ic_public_account.png', title: '公众号'),
   ];
   final Map<String, double> _letterPositionMap = {INDEX_BAR_WORDS[0]: 0.0};
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {

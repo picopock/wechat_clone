@@ -9,8 +9,12 @@ class ConversationPage extends StatefulWidget {
   _ConversationPageState createState() => _ConversationPageState();
 }
 
-class _ConversationPageState extends State<ConversationPage> {
+class _ConversationPageState extends State<ConversationPage>
+    with AutomaticKeepAliveClientMixin {
   final ConversationPageData data = ConversationPageData.mock();
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
