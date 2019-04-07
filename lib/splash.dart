@@ -10,7 +10,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       print('3s 后跳转到首页');
-      Navigator.of(context).pushReplacementNamed('home');
+      Navigator.of(context).pushReplacementNamed('/home');
     });
   }
 

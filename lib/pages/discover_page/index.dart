@@ -66,7 +66,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
               iconPath: 'assets/images/ic_shopping.png',
               title: '购物',
               showDivider: true,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/shopping');
+              },
             ),
             DiscoverItem(
               iconPath: 'assets/images/ic_game_entry.png',

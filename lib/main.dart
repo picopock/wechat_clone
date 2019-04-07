@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './splash.dart';
 import './pages/home_page.dart';
 import './pages/search/search.dart';
+import './pages/shopping_page/shopping_page.dart';
 
 import './constants.dart' show AppColors;
 
@@ -15,8 +16,9 @@ void main() => runApp(
           cardColor: Color(AppColors.AppBarColor),
         ),
         routes: <String, WidgetBuilder>{
-          'home': (BuildContext context) => HomePage(),
-          'search': (BuildContext context) => Search(),
+          '/home': (BuildContext context) => HomePage(),
+          '/search': (BuildContext context) => Search(),
+          '/shopping': (BuildContext context) => ShoppingPage(),
         },
         home: SplashPage(),
       ),
