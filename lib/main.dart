@@ -15,11 +15,12 @@ void main() => runApp(
           primaryColor: Color(AppColors.AppBarColor),
           cardColor: Color(AppColors.AppBarColor),
         ),
+        initialRoute: '/',
         routes: <String, WidgetBuilder>{
+          '/': (BuildContext ctx) => SplashPage(),
           '/home': (BuildContext context) => HomePage(),
           '/search': (BuildContext context) => Search(),
           '/shopping': (BuildContext context) => ShoppingPage(),
         },
-        home: SplashPage(),
       ),
     );

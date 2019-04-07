@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
               elevation: 0.0, // 去掉阴影
               actions: <Widget>[
                 IconButton(
-                  padding: EdgeInsets.only(right: 40.0),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   icon: Icon(
                     IconData(
                       0xe65e,
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                     size: 24.0,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, 'search');
+                    Navigator.pushNamed(context, '/search');
                   },
                 ),
                 PopupMenuButton(
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                     ];
                   },
                   offset: Offset(0.0, 60.0),
-                  padding: EdgeInsets.only(right: 30.0),
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
                   icon: Icon(Icons.add_circle_outline, size: 30.0),
                   onSelected: (ActionItems selected) {
                     print('点击的是 $selected');
