@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-import './widgets/grid_view_list.dart';
+import './widgets/grid_view_list.dart' show OperateType, CustomGridViewList;
 
 enum ConfirmDialogAction {
   cancel,
@@ -17,6 +17,7 @@ class ShoppingPage extends StatefulWidget {
 
 class _ShoppingPageState extends State<ShoppingPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  WebViewController controller;
 
   void _showConfirmDialog<T>({BuildContext context, Widget child}) {
     showDialog<T>(
@@ -30,15 +31,78 @@ class _ShoppingPageState extends State<ShoppingPage> {
     });
   }
 
+  onTap(OperateType key) {
+    print(key);
+    String loadUrl;
+    switch (key) {
+      case OperateType.HOME:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.CATEGORY:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SHOPPING:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.PERSONAL:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.PLUS:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.FLOAT_WINDOW:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SEND_FRIEND:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SHARE_FRIENDS:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.COLLECT:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SEARCH:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.COPY_URL:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.OPEN_IN_BROWSER:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.TRANSLATE:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.MODIFY_FONT:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.REFRESH:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.COMPLAINT:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SHARE_ENTERPRISE_WECHAT:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SHARE_QQ:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      case OperateType.SHARE_QQ_ZORE:
+        loadUrl = 'https://m.jd.com/';
+        break;
+      default:
+        loadUrl = 'https://m.jd.com/';
+    }
+    controller.loadUrl(loadUrl).then((_) {
+      Navigator.of(context).pop();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      url: 'https://www.jd.com/',
-      withJavascript: true,
-      withZoom: true,
-      withLocalStorage: true,
-      enableAppScheme: true,
-      hidden: true,
+    return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.close),
@@ -70,7 +134,35 @@ class _ShoppingPageState extends State<ShoppingPage> {
               showModalBottomSheet<void>(
                 context: context,
                 builder: (BuildContext context) {
-                  return Container(child: CustomGridViewList());
+                  return Container(
+                    height: 400.0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10.0),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                width: 0.5,
+                                style: BorderStyle.solid,
+                                color: Color(0xffc3c3c3),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            '网页由 wq.jd.com 提供',
+                            style: TextStyle(
+                              color: Color(0xffc3c3c3),
+                              fontWeight: FontWeight.w100,
+                            ),
+                          ),
+                        ),
+                        CustomGridViewList(onTap: onTap),
+                      ],
+                    ),
+                  );
                 },
               );
             },
@@ -78,6 +170,18 @@ class _ShoppingPageState extends State<ShoppingPage> {
             icon: Icon(Icons.dashboard),
           ),
         ],
+      ),
+      body: WebView(
+        initialUrl: 'https://m.jd.com/',
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (WebViewController controller) {
+          setState(() {
+            controller = controller;
+          });
+        },
+        onPageFinished: (String url) {
+          print('url: $url');
+        },
       ),
     );
   }
