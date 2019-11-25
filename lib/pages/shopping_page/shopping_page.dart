@@ -32,20 +32,19 @@ class _ShoppingPageState extends State<ShoppingPage> {
   }
 
   onTap(OperateType key) {
-    print(key);
     String loadUrl;
     switch (key) {
       case OperateType.HOME:
         loadUrl = 'https://m.jd.com/';
         break;
       case OperateType.CATEGORY:
-        loadUrl = 'https://m.jd.com/';
+        loadUrl = 'https://so.m.jd.com/webportal/channel/m_category/';
         break;
       case OperateType.SHOPPING:
-        loadUrl = 'https://m.jd.com/';
+        loadUrl = 'https://p.m.jd.com/cart/cart.action/';
         break;
       case OperateType.PERSONAL:
-        loadUrl = 'https://m.jd.com/';
+        loadUrl = 'https://plogin.m.jd.com/user/';
         break;
       case OperateType.PLUS:
         loadUrl = 'https://m.jd.com/';
@@ -102,6 +101,8 @@ class _ShoppingPageState extends State<ShoppingPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('render');
+    print(controller);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -174,9 +175,9 @@ class _ShoppingPageState extends State<ShoppingPage> {
       body: WebView(
         initialUrl: 'https://m.jd.com/',
         javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController controller) {
+        onWebViewCreated: (WebViewController _controller) {
           setState(() {
-            controller = controller;
+            controller = _controller;
           });
         },
         onPageFinished: (String url) {

@@ -203,7 +203,155 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-      bottomNavigationBar: _bottomNavigationBar,
+      // bottomNavigationBar: _bottomNavigationBar,
+      bottomNavigationBar: BottomAppBar(
+        // color: const Color(AppColors.TabIconActive),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            GestureDetector(
+              child: Container(
+                padding: EdgeInsets.only(top: 10.0),
+                height: 55.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      IconData(_currentIndex == 0 ? 0xe603 : 0xe608,
+                          fontFamily: Constants.IconFontFamily),
+                      color: _currentIndex == 0
+                          ? const Color(AppColors.TabIconActive)
+                          : Colors.black54,
+                    ),
+                    Text(
+                      '微信',
+                      style: TextStyle(
+                        color: _currentIndex == 0
+                            ? const Color(AppColors.TabIconActive)
+                            : Colors.black54,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  _currentIndex = 0;
+                  _pageController.animateToPage(
+                    _currentIndex,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                });
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                padding: EdgeInsets.only(top: 10.0),
+                height: 55.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      IconData(_currentIndex == 1 ? 0xe656 : 0xe656,
+                          fontFamily: Constants.IconFontFamily),
+                      color: _currentIndex == 1
+                          ? const Color(AppColors.TabIconActive)
+                          : Colors.black54,
+                    ),
+                    Text(
+                      '通讯录',
+                      style: TextStyle(
+                        color: _currentIndex == 1
+                            ? const Color(AppColors.TabIconActive)
+                            : Colors.black54,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  _currentIndex = 1;
+                  _pageController.animateToPage(
+                    _currentIndex,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                });
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                padding: EdgeInsets.only(top: 10.0),
+                height: 55.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      IconData(_currentIndex == 2 ? 0xe671 : 0xe600,
+                          fontFamily: Constants.IconFontFamily),
+                      color: _currentIndex == 2
+                          ? const Color(AppColors.TabIconActive)
+                          : Colors.black54,
+                    ),
+                    Text(
+                      '发现',
+                      style: TextStyle(
+                        color: _currentIndex == 2
+                            ? const Color(AppColors.TabIconActive)
+                            : Colors.black54,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  _currentIndex = 2;
+                  _pageController.animateToPage(
+                    _currentIndex,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                });
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                padding: EdgeInsets.only(top: 10.0),
+                height: 55.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      IconData(_currentIndex == 3 ? 0xe626 : 0xe6c0,
+                          fontFamily: Constants.IconFontFamily),
+                      color: _currentIndex == 3
+                          ? const Color(AppColors.TabIconActive)
+                          : Colors.black54,
+                    ),
+                    Text(
+                      '我',
+                      style: TextStyle(
+                        color: _currentIndex == 3
+                            ? const Color(AppColors.TabIconActive)
+                            : Colors.black54,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  _currentIndex = 3;
+                  _pageController.animateToPage(
+                    _currentIndex,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                });
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
