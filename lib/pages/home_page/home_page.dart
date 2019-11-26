@@ -8,6 +8,9 @@ import '../contact_page/index.dart';
 import '../discover_page/index.dart';
 import '../mine_page/index.dart';
 
+import './widgets/custom_bottom_navigation_bar.dart'
+    show CustomBottomNavigationBar, CustomBottomNavigationBarItem;
+
 enum ActionItems {
   GROUP_CHAT,
   ADD_FRIEND,
@@ -24,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   PageController _pageController;
   BottomNavigationBarType _type = BottomNavigationBarType.fixed;
   List<NavigationIconView> _navigationViews;
+  List<CustomBottomNavigationBarItem> _navigationItems;
   List<Widget> _pages;
   int _currentIndex = 0;
 
@@ -59,6 +63,33 @@ class _HomePageState extends State<HomePage> {
       ContactsPage(),
       DiscoverPage(),
       MinePage(),
+    ];
+
+    _navigationItems = <CustomBottomNavigationBarItem>[
+      CustomBottomNavigationBarItem(
+        index: 0,
+        title: '微信',
+        iconCode: 0xe608,
+        activeIconCode: 0xe603,
+      ),
+      CustomBottomNavigationBarItem(
+        index: 1,
+        title: '通讯录',
+        iconCode: 0xe601,
+        activeIconCode: 0xe656,
+      ),
+      CustomBottomNavigationBarItem(
+        index: 2,
+        title: '发现',
+        iconCode: 0xe600,
+        activeIconCode: 0xe671,
+      ),
+      CustomBottomNavigationBarItem(
+        index: 3,
+        title: '我',
+        iconCode: 0xe6c0,
+        activeIconCode: 0xe626,
+      ),
     ];
   }
 
@@ -99,28 +130,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final BottomNavigationBar _bottomNavigationBar = BottomNavigationBar(
-      items: _navigationViews
-          .map<BottomNavigationBarItem>(
-              (NavigationIconView navigationIconView) =>
-                  navigationIconView.item)
-          .toList(),
-      fixedColor: const Color(AppColors.TabIconActive),
-      currentIndex: _currentIndex,
-      type: _type,
-      iconSize: 24.0,
-      onTap: (int index) {
-        setState(() {
-          _currentIndex = index;
-          _pageController.animateToPage(
-            _currentIndex,
-            duration: Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-          );
-        });
-      },
-    );
-
+    // final BottomNavigationBar _bottomNavigationBar = BottomNavigationBar(
+    //   items: _navigationViews
+    //       .map<BottomNavigationBarItem>(
+    //           (NavigationIconView navigationIconView) =>
+    //               navigationIconView.item)
+    //       .toList(),
+    //   fixedColor: const Color(AppColors.TabIconActive),
+    //   currentIndex: _currentIndex,
+    //   type: _type,
+    //   iconSize: 24.0,
+    //   onTap: (int index) {
+    //     setState(() {
+    //       _currentIndex = index;
+    //       _pageController.animateToPage(
+    //         _currentIndex,
+    //         duration: Duration(milliseconds: 200),
+    //         curve: Curves.easeInOut,
+    //       );
+    //     });
+    //   },
+    // );
     return Scaffold(
       appBar: _currentIndex != 3
           ? AppBar(
@@ -204,153 +234,20 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       // bottomNavigationBar: _bottomNavigationBar,
-      bottomNavigationBar: BottomAppBar(
-        // color: const Color(AppColors.TabIconActive),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            GestureDetector(
-              child: Container(
-                padding: EdgeInsets.only(top: 10.0),
-                height: 55.0,
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      IconData(_currentIndex == 0 ? 0xe603 : 0xe608,
-                          fontFamily: Constants.IconFontFamily),
-                      color: _currentIndex == 0
-                          ? const Color(AppColors.TabIconActive)
-                          : Colors.black54,
-                    ),
-                    Text(
-                      '微信',
-                      style: TextStyle(
-                        color: _currentIndex == 0
-                            ? const Color(AppColors.TabIconActive)
-                            : Colors.black54,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 0;
-                  _pageController.animateToPage(
-                    _currentIndex,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                  );
-                });
-              },
-            ),
-            GestureDetector(
-              child: Container(
-                padding: EdgeInsets.only(top: 10.0),
-                height: 55.0,
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      IconData(_currentIndex == 1 ? 0xe656 : 0xe656,
-                          fontFamily: Constants.IconFontFamily),
-                      color: _currentIndex == 1
-                          ? const Color(AppColors.TabIconActive)
-                          : Colors.black54,
-                    ),
-                    Text(
-                      '通讯录',
-                      style: TextStyle(
-                        color: _currentIndex == 1
-                            ? const Color(AppColors.TabIconActive)
-                            : Colors.black54,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 1;
-                  _pageController.animateToPage(
-                    _currentIndex,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                  );
-                });
-              },
-            ),
-            GestureDetector(
-              child: Container(
-                padding: EdgeInsets.only(top: 10.0),
-                height: 55.0,
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      IconData(_currentIndex == 2 ? 0xe671 : 0xe600,
-                          fontFamily: Constants.IconFontFamily),
-                      color: _currentIndex == 2
-                          ? const Color(AppColors.TabIconActive)
-                          : Colors.black54,
-                    ),
-                    Text(
-                      '发现',
-                      style: TextStyle(
-                        color: _currentIndex == 2
-                            ? const Color(AppColors.TabIconActive)
-                            : Colors.black54,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 2;
-                  _pageController.animateToPage(
-                    _currentIndex,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                  );
-                });
-              },
-            ),
-            GestureDetector(
-              child: Container(
-                padding: EdgeInsets.only(top: 10.0),
-                height: 55.0,
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      IconData(_currentIndex == 3 ? 0xe626 : 0xe6c0,
-                          fontFamily: Constants.IconFontFamily),
-                      color: _currentIndex == 3
-                          ? const Color(AppColors.TabIconActive)
-                          : Colors.black54,
-                    ),
-                    Text(
-                      '我',
-                      style: TextStyle(
-                        color: _currentIndex == 3
-                            ? const Color(AppColors.TabIconActive)
-                            : Colors.black54,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 3;
-                  _pageController.animateToPage(
-                    _currentIndex,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                  );
-                });
-              },
-            ),
-          ],
-        ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        items: _navigationItems,
+        iconSize: 24.0,
+        onTap: (item) {
+          setState(() {
+            _currentIndex = item.index;
+            _pageController.animateToPage(
+              _currentIndex,
+              duration: Duration(milliseconds: 200),
+              curve: Curves.easeInOut,
+            );
+          });
+        },
       ),
     );
   }

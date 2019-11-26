@@ -72,10 +72,11 @@ class DiscoverItem extends StatelessWidget {
     return FlatButton(
       onPressed: onPressed,
       padding: EdgeInsets.only(
-          left: PADDING_LEFT,
-          right: PADDING_RIGHT,
-          top: VERTICAL_PADDING,
-          bottom: showDivider ? 0.0 : VERTICAL_PADDING),
+        left: PADDING_LEFT,
+        right: PADDING_RIGHT,
+        top: VERTICAL_PADDING,
+        bottom: showDivider ? 0.0 : VERTICAL_PADDING,
+      ),
       color: Colors.white,
       child: showDivider ? borderButton : noBorderButton,
     );
